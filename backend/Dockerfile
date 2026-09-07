@@ -1,7 +1,6 @@
 FROM node:22-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 COPY src ./src
-COPY .env.example ./.env.example
 CMD ["node","src/server.js"]

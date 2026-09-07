@@ -21,6 +21,7 @@ app.use(cookieParser());
 
 app.get("/health", (req, res) =>
   res.json({ status: "ok", service: "codeforces-insights-backend" }),
+  
 );
 app.get("/api/v1/health", (req, res) => res.json({ status: "ok" }));
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # CodePulse
 
 Full-stack Codeforces analytics and AI coaching application.
@@ -102,7 +103,7 @@ npm run dev
 ```
 
 Frontend:
-`http://localhost:5173`
+`http://localhost:3000`
 
 Set:
 
@@ -117,7 +118,7 @@ Backend `.env`:
 ```env
 MONGODB_URI=mongodb://127.0.0.1:27017/codeforces_insights
 JWT_SECRET=replace-with-a-long-random-secret
-FRONTEND_ORIGIN=http://localhost:5173
+FRONTEND_ORIGIN=http://localhost:3000
 
 CODEFORCES_API_URL=https://codeforces.com/api
 
@@ -131,7 +132,7 @@ SMTP_USER=
 SMTP_PASS=
 EMAIL_FROM="CodePulse <no-reply@example.com>"
 
-PASSWORD_RESET_URL=http://localhost:5173/reset-password
+PASSWORD_RESET_URL=http://localhost:3000/reset-password
 ```
 
 AI `.env`:
@@ -236,7 +237,7 @@ docker compose up --build
 Services:
 
 ```text
-Frontend → http://localhost:5173
+Frontend → http://localhost:3000
 Backend  → http://localhost:4000
 AI       → http://localhost:8000
 MongoDB  → localhost:27017
@@ -286,7 +287,9 @@ codeforces-insights/
 ├── docker-compose.yml
 └── README.md
 ```
+
 =======
+
 <div align="center">
 
 # 🚀 CodePulse

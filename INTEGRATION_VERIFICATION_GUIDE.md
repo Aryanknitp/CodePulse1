@@ -5,7 +5,7 @@
 ### 1. Backend Configuration Fixed
 
 - **Fixed**: `backend/.env` - Changed PORT from 5000 to 4000
-- **Fixed**: Added `FRONTEND_ORIGIN=http://localhost:5173` for CORS
+- **Fixed**: Added `FRONTEND_ORIGIN=http://localhost:3000` for CORS
 - **Fixed**: Added `AI_SERVICE_TOKEN=test-token-change-in-production`
 - **Fixed**: Syntax error in `backend/src/controllers/codeforces.js` (removed stray 's;')
 
@@ -78,7 +78,7 @@ Frontend (SyncStatus component)
 ### Prerequisites
 
 - [ ] Backend running: `npm start` (port 4000)
-- [ ] Frontend running: `npm run dev` (port 5173)
+- [ ] Frontend running: `npm run dev` (port 3000)
 - [ ] AI service running: `python -m app.main` (port 8000)
 - [ ] MongoDB connected and accessible
 
@@ -103,7 +103,7 @@ curl -X GET http://localhost:4000/api/v1/auth/me \
 
 ### 2. Test Frontend Auth
 
-1. Open http://localhost:5173
+1. Open http://localhost:3000
 2. Click "Sign Up"
 3. Register with test account
 4. Verify email with OTP code
@@ -198,7 +198,7 @@ curl -X GET http://localhost:4000/api/v1/auth/me \
 PORT=4000                                      # ← FIXED
 MONGODB_URI=mongodb+srv://...                 # ✅
 JWT_SECRET=3fbe17efb96a644b8c204c015...      # ✅
-FRONTEND_ORIGIN=http://localhost:5173         # ← ADDED
+FRONTEND_ORIGIN=http://localhost:3000         # ← ADDED
 AI_SERVICE_URL=http://localhost:8000          # ✅
 AI_SERVICE_TOKEN=test-token-change-...        # ← ADDED
 CODEFORCES_API_URL=https://codeforces.com/api # ✅
@@ -294,7 +294,7 @@ Body: {"context": {user data}}
 ```
 ┌─────────────┐          ┌─────────────┐          ┌──────────────┐
 │   Frontend  │          │  Backend    │          │  AI Service  │
-│ Port 5173   │◄────────►│ Port 4000   │◄────────►│ Port 8000    │
+│ Port 3000   │◄────────►│ Port 4000   │◄────────►│ Port 8000    │
 │   React     │ CORS OK  │ Express.js  │  Bearer  │  FastAPI     │
 └─────────────┘          └─────────────┘ Token    └──────────────┘
       │                        │                         │

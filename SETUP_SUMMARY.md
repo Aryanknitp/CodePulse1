@@ -6,7 +6,7 @@ This is a full-stack application for CodePulse with three deployable services:
 
 | Service        | Tech Stack        | Local Port | Deployment | Status        |
 | -------------- | ----------------- | ---------- | ---------- | ------------- |
-| **Frontend**   | React 19 + Vite   | 5173       | Vercel     | ✅ Configured |
+| **Frontend**   | React 19 + Vite   | 3000       | Vercel     | ✅ Configured |
 | **Backend**    | Node.js + Express | 4000       | Render     | ✅ Configured |
 | **AI Service** | Python + FastAPI  | 8000       | Railway    | ✅ Configured |
 | **Database**   | MongoDB Atlas     | -          | Cloud      | ✅ Configured |
@@ -140,7 +140,7 @@ GEMINI_MODEL=gemini-3.6-flash
 # Terminal 1 - Frontend
 cd frontend
 npm install
-npm run dev  # Runs on http://localhost:5173
+npm run dev  # Runs on http://localhost:3000
 
 # Terminal 2 - Backend
 cd backend

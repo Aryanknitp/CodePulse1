@@ -1,8 +1,7 @@
 export const APP_NAME = "CodePulse";
 export const APP_TAGLINE =
   "Your Codeforces History. Your DSA Intelligence. Your Next Best Problem.";
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+export const API_BASE_URL = process.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 export const SYNC_STAGES = [
   { id: "profile", label: "Profile" },

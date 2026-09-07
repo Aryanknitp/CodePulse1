@@ -7,8 +7,8 @@ if (await connectDatabase()) {
   console.log("Data");
 }
 
-app.get('/', (req, res) => {
-  res.send('Backend is up and running smoothly!');
+app.get("/", (req, res) => {
+  res.send("Backend is up and running smoothly!");
 });
 
 app.listen(env.port, () =>

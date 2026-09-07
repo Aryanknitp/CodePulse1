@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: codeforces-ai-service
+    runtime: python
+    rootDir: ai-service
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: AI_SERVICE_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+
+  - type: web
+    name: codeforces-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: AI_SERVICE_URL
+        sync: false
+      - key: AI_SERVICE_TOKEN
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: web
+    name: codeforces-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false

@@ -1,0 +1,8 @@
+import { Router } from "express";
+import * as c from "../controllers/contests.js";
+import { requireAuth } from "../middleware/auth.js";
+const r = Router();
+r.use(requireAuth);
+r.get("/", c.list);
+r.get("/:id", c.detail);
+export default r;

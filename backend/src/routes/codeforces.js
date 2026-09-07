@@ -1,0 +1,12 @@
+import { Router } from "express";
+import * as c from "../controllers/codeforces.js";
+import { requireAuth } from "../middleware/auth.js";
+const router = Router();
+router.use(requireAuth);
+router.post("/connect", c.connect);
+router.post("/verify", c.verifyOwnership);
+router.get("/verification-challenge", c.verificationChallenge);
+router.post("/sync", c.sync);
+router.get("/profile", c.profile);
+router.post("/disconnect", c.disconnect);
+export default router;

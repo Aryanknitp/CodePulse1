@@ -1,0 +1,12 @@
+import { Router } from "express";
+import * as c from "../controllers/analytics.js";
+import { requireAuth } from "../middleware/auth.js";
+const r = Router();
+r.use(requireAuth);
+r.get("/overview", c.overview);
+r.get("/rating", c.rating);
+r.get("/difficulty", c.difficulty);
+r.get("/topics", c.topics);
+r.get("/submissions", c.submissions);
+r.get("/contests", c.contests);
+export default r;

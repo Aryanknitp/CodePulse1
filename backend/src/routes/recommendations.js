@@ -1,0 +1,12 @@
+import { Router } from "express";
+import * as c from "../controllers/recommendations.js";
+import { requireAuth } from "../middleware/auth.js";
+const r = Router();
+r.use(requireAuth);
+r.get("/today", c.today);
+r.get("/", c.list);
+r.get("/history", c.history);
+r.post("/:id/complete", c.complete);
+r.post("/:id/skip", c.skip);
+r.post("/:id/not-relevant", c.notRelevant);
+export default r;

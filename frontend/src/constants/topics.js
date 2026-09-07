@@ -1,0 +1,31 @@
+export const CF_TOPICS = [
+  'implementation', 'math', 'greedy', 'dp', 'data structures',
+  'brute force', 'constructive algorithms', 'graphs', 'sortings',
+  'binary search', 'dfs and similar', 'trees', 'strings', 'number theory',
+  'combinatorics', 'two pointers', 'bitmasks', 'geometry',
+  'shortest paths', 'probabilities', 'divide and conquer',
+  'hashing', 'matrices', 'flows', 'game theory',
+  'string suffix structures', 'fft', 'schedules',
+];
+
+export const TOPIC_LABELS = {
+  'implementation': 'Implementation',
+  'math': 'Math',
+  'greedy': 'Greedy',
+  'dp': 'Dynamic Programming',
+  'data structures': 'Data Structures',
+  'brute force': 'Brute Force',
+  'constructive algorithms': 'Constructive',
+  'graphs': 'Graphs',
+  'sortings': 'Sorting',
+  'binary search': 'Binary Search',
+  'dfs and similar': 'DFS & BFS',
+  'trees': 'Trees',
+  'strings': 'Strings',
+  'number theory': 'Number Theory',
+  'combinatorics': 'Combinatorics',
+  'two pointers': 'Two Pointers',
+  'bitmasks': 'Bitmasks',
+  'geometry': 'Geometry',
+  'shortest paths': 'Shortest Paths',
+};

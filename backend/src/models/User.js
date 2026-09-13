@@ -54,8 +54,4 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-
-// ❌ REMOVE OR COMMENT OUT THIS LINE BELOW:
-// UserSchema.index({ email: 1 }, { unique: true });
-
 export const User = mongoose.model("User", UserSchema);

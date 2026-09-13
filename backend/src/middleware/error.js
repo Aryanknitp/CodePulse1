@@ -9,7 +9,7 @@ export function errorHandler(err, req, res, next) {
   const status = err.statusCode || 500;
   res.status(status).json({
     message:
-      status >= 500 && env.nodeEnv === "production"
+      status >= 500 && env.nodeEnv === "production" && !err.expose
         ? "Internal server error."
         : err.message,
     code: err.code || "INTERNAL_ERROR",

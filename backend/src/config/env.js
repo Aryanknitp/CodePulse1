@@ -27,11 +27,13 @@ export const env = {
     process.env.FRONTEND_ORIGIN || "https://code-pulse1-sy6d.vercel.app",
   mongodbUri: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
+
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
   cfApiUrl: process.env.CODEFORCES_API_URL || "https://codeforces.com/api",
   syncIntervalMinutes: Number(
     process.env.CODEFORCES_SYNC_INTERVAL_MINUTES || 20,
   ),
+
   problemsetSyncHours: Number(
     process.env.CODEFORCES_PROBLEMSET_SYNC_HOURS || 24,
   ),

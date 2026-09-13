@@ -8,7 +8,7 @@ export async function connectDatabase() {
 
   if (isConnected) {
     console.log("[db] Using existing MongoDB connection");
-    return;
+    return true; // ✅ Explicitly return true
   }
 
   mongoose.connection.on("connected", () => {
@@ -34,6 +34,8 @@ export async function connectDatabase() {
     };
 
     await mongoose.connect(env.mongodbUri, options);
+    isConnected = true; // ✅ Ensure status is set immediately
+    return true; // ✅ Return true on successful connection
   } catch (error) {
     console.error(
       "[db] Critical error during initial database connection:",

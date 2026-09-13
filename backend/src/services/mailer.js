@@ -9,6 +9,7 @@ if (env.smtp.host && env.smtp.user && env.smtp.pass) {
     port: env.smtp.port,
     secure: env.smtp.secure,
     auth: { user: env.smtp.user, pass: env.smtp.pass },
+    dnsTimeout: 10000,
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 15000,

@@ -12,6 +12,22 @@ import {
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+async function sendVerificationEmail(email, otp) {
+  try {
+    await sendEmailOtp(email, otp);
+  } catch (error) {
+    console.error("[auth] Verification email delivery failed:", {
+      code: error.code,
+      message: error.message,
+    });
+    throw new AppError(
+      503,
+      "We could not send the verification email. Please try again shortly.",
+      "EMAIL_DELIVERY_FAILED",
+    );
+  }
+}
+
 function passwordErrors(password = "") {
   const errors = [];
   if (password.length < 8)
@@ -64,7 +80,7 @@ export const register = asyncHandler(async (req, res) => {
   user.emailVerificationAttempts = 0;
   user.emailOtpLastSentAt = new Date();
   await user.save();
-  await sendEmailOtp(user.email, otp);
+  await sendVerificationEmail(user.email, otp);
   res.status(201).json({
     message: "Verification code sent to your email.",
     email: user.email,
@@ -116,7 +132,7 @@ export const resendOtp = asyncHandler(async (req, res) => {
   if (
     user.emailOtpLastSentAt &&
     Date.now() - user.emailOtpLastSentAt.getTime() <
-      env.emailOtpResendSeconds * 100
+      env.emailOtpResendSeconds * 1000
   ) {
     throw new AppError(
       429,
@@ -132,10 +148,9 @@ export const resendOtp = asyncHandler(async (req, res) => {
   user.emailVerificationAttempts = 0;
   user.emailOtpLastSentAt = new Date();
   await user.save();
-  await sendEmailOtp(user.email, otp);
+  await sendVerificationEmail(user.email, otp);
   res.json({ message: "Verification code sent." });
 });
-
 
 ///////
 // Login Controller

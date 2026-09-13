@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { env } from "../config/env.js";
+import { AppError } from "../utils/errors.js";
 
 let transporter = null;
 if (env.smtp.host && env.smtp.user && env.smtp.pass) {
@@ -13,6 +14,13 @@ if (env.smtp.host && env.smtp.user && env.smtp.pass) {
 
 async function sendMail({ to, subject, text, html }) {
   if (!transporter) {
+    if (env.nodeEnv === "production") {
+      throw new AppError(
+        503,
+        "Email delivery is not configured.",
+        "EMAIL_NOT_CONFIGURED",
+      );
+    }
     console.warn(
       `[mailer] SMTP not configured. Would send "${subject}" to ${to}.`,
     );

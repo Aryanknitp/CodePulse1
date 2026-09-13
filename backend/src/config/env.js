@@ -18,13 +18,15 @@ for (const key of required) {
 
 // Render local production validation fallback
 const isProduction = process.env.NODE_ENV === "production";
+const frontendOrigin = (
+  process.env.FRONTEND_ORIGIN || "https://code-pulse1-sy6d.vercel.app"
+).replace(/\/+$/, "");
 
 export const env = {
   // Render injected PORT ensures absolute precedence
   port: Number(process.env.PORT || 10000),
   nodeEnv: process.env.NODE_ENV || "development",
-  frontendOrigin:
-    process.env.FRONTEND_ORIGIN || "https://code-pulse1-sy6d.vercel.app",
+  frontendOrigin,
   mongodbUri: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
 

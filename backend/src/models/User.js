@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true, // 👈 This line ALREADY handles the unique index perfectly!
       lowercase: true,
       trim: true,
       // index: true,
@@ -55,6 +55,7 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-UserSchema.index({ email: 1 }, { unique: true });
+// ❌ REMOVE OR COMMENT OUT THIS LINE BELOW:
+// UserSchema.index({ email: 1 }, { unique: true });
 
 export const User = mongoose.model("User", UserSchema);

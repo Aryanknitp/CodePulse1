@@ -106,7 +106,7 @@ export const verifyEmail = asyncHandler(async (req, res) => {
   });
 });
 
-// Functino for resendOtp
+// Function for ResendOtp
 export const resendOtp = asyncHandler(async (req, res) => {
   const email = String(req.body?.email || "").toLowerCase();
   const user = await User.findOne({ email });
@@ -116,7 +116,7 @@ export const resendOtp = asyncHandler(async (req, res) => {
   if (
     user.emailOtpLastSentAt &&
     Date.now() - user.emailOtpLastSentAt.getTime() <
-      env.emailOtpResendSeconds * 1000
+      env.emailOtpResendSeconds * 100
   ) {
     throw new AppError(
       429,
@@ -136,6 +136,8 @@ export const resendOtp = asyncHandler(async (req, res) => {
   res.json({ message: "Verification code sent." });
 });
 
+
+///////
 // Login Controller
 export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;

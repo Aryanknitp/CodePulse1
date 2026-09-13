@@ -24,7 +24,7 @@ export const env = {
   port: Number(process.env.PORT || 10000),
   nodeEnv: process.env.NODE_ENV || "development",
   frontendOrigin:
-    process.env.FRONTEND_ORIGIN || "https://code-pulse1-ten.vercel.app/",
+    process.env.FRONTEND_ORIGIN || "https://code-pulse1-sy6d.vercel.app",
   mongodbUri: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
@@ -47,7 +47,7 @@ export const env = {
   },
   passwordResetUrl:
     process.env.PASSWORD_RESET_URL ||
-    "https://code-pulse1-ten.vercel.app/reset-password",
+    "https://code-pulse1-sy6d.vercel.app/reset-password",
   emailOtpTtlMinutes: Number(process.env.EMAIL_OTP_TTL_MINUTES || 5),
   emailOtpResendSeconds: Number(process.env.EMAIL_OTP_RESEND_SECONDS || 60),
   cfVerificationTtlMinutes: Number(

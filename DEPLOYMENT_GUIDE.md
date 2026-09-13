@@ -105,6 +105,10 @@ Then connect your GitHub repo to Render and it will auto-deploy using `render.ya
 
 ## Step 4: Deploy Frontend on Vercel
 
+Use one of these two configurations:
+
+#### Recommended: set the Vercel Root Directory
+
 ### Option A: Git Push (Recommended)
 
 1. Go to https://vercel.com/dashboard
@@ -124,6 +128,15 @@ Then connect your GitHub repo to Render and it will auto-deploy using `render.ya
    ```
 
 6. Click "Deploy"
+
+The repository also contains `frontend/vercel.json`, which provides the SPA
+fallback for direct visits to client-side routes such as `/app/dashboard`.
+
+#### Alternative: keep the repository root as the Root Directory
+
+If Vercel is configured with `.` as the Root Directory, the root `vercel.json`
+builds the application from `frontend/`, publishes `frontend/dist`, and applies
+the same SPA fallback. In that setup, use the default Vercel build settings.
 
 ### Option B: Using vercel.json
 

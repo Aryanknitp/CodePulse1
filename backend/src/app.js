@@ -15,7 +15,9 @@ import { notFound, errorHandler } from "./middleware/error.js";
 
 const app = express();
 app.disable("x-powered-by");
-app.use(cors({ origin: env.frontendOrigin, credentials: true }));
+app.use(cors(
+  { origin: env.frontendOrigin, credentials: true }
+));
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 

@@ -23,9 +23,12 @@ const app = express();
 app.disable("x-powered-by");
 
 // CORS Configuration (Production ke liye dynamic fallback ke saath)
+// CORS Configuration (Production ready with strict credentials checking)
+const allowedOrigin = env.frontendOrigin || "https://vercel.app";
+
 app.use(
   cors({
-    origin: env.frontendOrigin || "*",
+    origin: allowedOrigin,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],

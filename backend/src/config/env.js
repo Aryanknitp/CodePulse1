@@ -49,6 +49,7 @@ export const env = {
     pass: process.env.SMTP_PASS || "",
     from: process.env.EMAIL_FROM || "CodePulse <no-reply@example.com>",
   },
+  resendApiKey: process.env.RESEND_API_KEY || "",
   passwordResetUrl:
     process.env.PASSWORD_RESET_URL ||
     "https://code-pulse1-sy6d.vercel.app/reset-password",

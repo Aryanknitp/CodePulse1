@@ -5,7 +5,11 @@ export function notFound(req, res) {
 }
 
 export function errorHandler(err, req, res, next) {
-  console.error("[api-error]", err);
+  const isExpectedUnauthenticatedCheck =
+    err.code === "UNAUTHORIZED" && req.path === "/me";
+  if (!isExpectedUnauthenticatedCheck) {
+    console.error("[api-error]", err);
+  }
   const status = err.statusCode || 500;
   res.status(status).json({
     message:

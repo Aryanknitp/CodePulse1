@@ -17,6 +17,10 @@ if (env.smtp.host && env.smtp.user && env.smtp.pass) {
 }
 
 async function sendMail({ to, subject, text, html }) {
+  if (env.resendApiKey) {
+    return sendWithResend({ to, subject, text, html });
+  }
+
   if (!transporter) {
     if (env.nodeEnv === "production") {
       throw new AppError(
@@ -32,6 +36,36 @@ async function sendMail({ to, subject, text, html }) {
   }
   await transporter.sendMail({ from: env.smtp.from, to, subject, text, html });
   return { delivered: true, mode: "smtp" };
+}
+
+async function sendWithResend({ to, subject, text, html }) {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: env.smtp.from,
+      to: [to],
+      subject,
+      text,
+      html,
+    }),
+    signal: AbortSignal.timeout(10000),
+  });
+
+  if (!response.ok) {
+    const details = await response.text();
+    throw new AppError(
+      503,
+      "Email provider rejected the verification email.",
+      "EMAIL_DELIVERY_FAILED",
+      details.slice(0, 500),
+    );
+  }
+
+  return { delivered: true, mode: "resend" };
 }
 
 // export async function sendEmailOtp(email, otp) {

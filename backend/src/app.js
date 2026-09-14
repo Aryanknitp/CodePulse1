@@ -21,6 +21,7 @@ const app = express();
 
 // Security Setting
 app.disable("x-powered-by");
+app.set("trust proxy", 1);
 
 // CORS Configuration (Production ke liye dynamic fallback ke saath)
 // CORS Configuration (Production ready with strict credentials checking)

@@ -47,8 +47,10 @@ export const env = {
     from: process.env.EMAIL_FROM || "CodePulse <no-reply@example.com>",
   },
   resendApiKey: process.env.RESEND_API_KEY,
+  resendFrom:
+    process.env.RESEND_FROM_EMAIL || "CodePulse <onboarding@resend.dev>",
   passwordResetUrl:
-    process.env.PASSWORD_RESET_URL || "http:localhost:3000/reset-password",
+    process.env.PASSWORD_RESET_URL || "http://localhost:3000/reset-password",
   emailOtpTtlMinutes: Number(process.env.EMAIL_OTP_TTL_MINUTES || 5),
   emailOtpResendSeconds: Number(process.env.EMAIL_OTP_RESEND_SECONDS || 60),
   cfVerificationTtlMinutes: Number(

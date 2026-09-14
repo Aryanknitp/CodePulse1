@@ -16,6 +16,7 @@ if (env.smtp.host && env.smtp.user && env.smtp.pass) {
   });
 }
 async function sendMail({ to, subject, text, html }) {
+  let resendFailure = null;
   if (env.resendApiKey) {
     try {
       const response = await fetch("https://api.resend.com/emails", {
@@ -25,7 +26,7 @@ async function sendMail({ to, subject, text, html }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: env.smtp.from,
+          from: env.resendFrom,
           to: [to],
           subject,
           text,
@@ -34,12 +35,13 @@ async function sendMail({ to, subject, text, html }) {
         signal: AbortSignal.timeout(10000),
       });
       if (response.ok) return { delivered: true, mode: "resend" };
-      console.warn(
-        `[mailer] Resend rejected the email (${response.status}); trying SMTP fallback.`,
-      );
+      const providerMessage = (await response.text()).slice(0, 300);
+      resendFailure = `Resend returned HTTP ${response.status}: ${providerMessage}`;
+      console.warn(`[mailer] ${resendFailure}; trying SMTP fallback.`);
     } catch (error) {
+      resendFailure = error.code || error.message;
       console.warn(
-        `[mailer] Resend request failed (${error.code || error.message}); trying SMTP fallback.`,
+        `[mailer] Resend request failed (${resendFailure}); trying SMTP fallback.`,
       );
     }
   }
@@ -48,8 +50,11 @@ async function sendMail({ to, subject, text, html }) {
     if (env.nodeEnv === "production") {
       throw new AppError(
         503,
-        "Email delivery is not configured.",
-        "EMAIL_NOT_CONFIGURED",
+        resendFailure
+          ? "Email delivery is unavailable. Configure a valid RESEND_API_KEY or SMTP account."
+          : "Email delivery is not configured.",
+        "EMAIL_DELIVERY_FAILED",
+        { provider: resendFailure || "none" },
       );
     }
     console.warn(

@@ -3,7 +3,7 @@ import { env } from "./config/env.js";
 import { connectDatabase } from "./config/database.js";
 import { startScheduler } from "./jobs/scheduler.js";
 
-const PORT = env.port || 10000;
+const PORT = env.port;
 
 // 1. Ek async function banayein server start karne ke liye
 async function startServer() {

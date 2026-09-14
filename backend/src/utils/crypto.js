@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 export function randomNumericOtp() {
   return String(Math.floor(100000 + Math.random() * 900000));
 }
-
+// console.log()
 export function randomCode(prefix = "CFI") {
   return `${prefix}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
 }

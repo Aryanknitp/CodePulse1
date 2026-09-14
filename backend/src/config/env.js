@@ -18,13 +18,10 @@ for (const key of required) {
 
 // Render local production validation fallback
 const isProduction = process.env.NODE_ENV === "production";
-const frontendOrigin = (
-  process.env.FRONTEND_ORIGIN || "https://code-pulse1-sy6d.vercel.app"
-).replace(/\/+$/, "");
-
+const frontendOrigin = process.env.FRONTEND_ORIGIN;
 export const env = {
   // Render injected PORT ensures absolute precedence
-  port: Number(process.env.PORT || 10000),
+  port: Number(process.env.PORT),
   nodeEnv: process.env.NODE_ENV || "development",
   frontendOrigin,
   mongodbUri: process.env.MONGODB_URI,
@@ -50,9 +47,7 @@ export const env = {
     from: process.env.EMAIL_FROM || "CodePulse <no-reply@example.com>",
   },
   resendApiKey: process.env.RESEND_API_KEY || "",
-  passwordResetUrl:
-    process.env.PASSWORD_RESET_URL ||
-    "https://code-pulse1-sy6d.vercel.app/reset-password",
+  passwordResetUrl: process.env.PASSWORD_RESET_URL,
   emailOtpTtlMinutes: Number(process.env.EMAIL_OTP_TTL_MINUTES || 5),
   emailOtpResendSeconds: Number(process.env.EMAIL_OTP_RESEND_SECONDS || 60),
   cfVerificationTtlMinutes: Number(

@@ -43,7 +43,7 @@ export const env = {
   aiServiceToken: process.env.AI_SERVICE_TOKEN,
   smtp: {
     host: process.env.SMTP_HOST || "",
-    port: Number(process.env.SMTP_PORT || 587),
+    port: Number(process.env.SMTP_PORT || 465),
     secure: String(process.env.SMTP_SECURE || "false") === "true",
     user: process.env.SMTP_USER || "",
     pass: process.env.SMTP_PASS || "",
